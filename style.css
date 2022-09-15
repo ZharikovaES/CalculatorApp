@@ -1,8 +1,12 @@
-body{
+*,*::before,*::after{
     margin: 0;
+    padding: 0;
 }
 button{
     cursor: pointer;
+}
+.concave {
+    background: linear-gradient(135deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25));
 }
 .calculator {
     min-width: 700px;
@@ -24,6 +28,8 @@ button{
     font-size: 20px;
     border: none;
     margin-bottom: 3%;
+    box-shadow: -4px -4px 20px 0 rgba(224, 234, 255, 0.83) inset,
+                4px 4px 4px 0 rgba(105, 135, 166, 0.51) inset;
 }
 .calculator input::placeholder {
     text-align: right;
@@ -36,6 +42,9 @@ button{
     grid-gap: 2%;
 }
 .calculator-numbers__btn {
+    box-shadow: -6px -6px 26px 0 rgba(224, 234, 255, 0.83),
+                6px 6px 16px 0 rgba(105, 135, 166, 0.51);
+    border: 1px solid rgba(255,255,255,0.2);
     border: none;
 }
 .calculator input:focus {

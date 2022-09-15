@@ -23,13 +23,14 @@ function calc(valueBtn){
                         /((\d+\.\d+)|\d+|\))$/,
                         /[^\.]$/
                     ];
-
+    // проверка поля ввода при добавлении нового символа
     if ((valueInput.length == 0 || regexp[0].test(valueInput)) && regexp[1].test(valueBtn)
      || (valueBtn == '0' && (valueInput.length == 0 || regexp[2].test(valueInput)))
      || !(regexp[3].test(valueInput)) && regexp[4].test(valueInput) && regexp[5].test(valueBtn)
      || regexp[6].test(valueInput) && regexp[7].test(valueBtn)){
         valueInput += valueBtn;
     }
+    // добавление скобки
     if (valueBtn == '()'){
         let a = valueInput.split("(").length - 1;
         let b = valueInput.split(")").length - 1;            
@@ -40,26 +41,31 @@ function calc(valueBtn){
         } else if (regexp[10].test(valueInput) || valueInput.length == 0){
             valueInput += "(";
         }
+    // удаление символа
     } else if (valueBtn == 'del'){
         valueInput = valueInput.substring(0, valueInput.length - 1);
+    // очистка поля ввода
     } else if (valueBtn == 'C'){
         valueInput = '';
     }
     input.value = valueInput;
     try{
+        // расчет выражения
         let result = eval(valueInput);
         if (!isNaN(result)){
-            output.value = result;
+            output.value = result.toFixed(10);
         }
     } catch(e){
         input.value = valueInput;
     }
+        // расчет выражения при нажатии =
     if (valueBtn == '='){
         try{
             let result = eval(valueInput);
             if (!isNaN(result)){
-                input.value = result;
-                output.value = result;
+                let resultFixed = result.toFixed(10);
+                input.value = resultFixed;
+                output.value = resultFixed;
             }
         } catch(e){
             input.value = valueInput;
